@@ -2,64 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Secure Emo Design System - Security-focused with emoji accents */
+/* Secure Emo Design System - Professional with subtle accents */
 
 @layer base {
   :root {
-    /* Security Theme - Dark cyber aesthetic */
-    --background: 225 25% 5%;
-    --foreground: 210 40% 98%;
+    /* Professional Theme */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-    --card: 225 25% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 225 25% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    /* Cyber Blue Primary */
-    --primary: 217 91% 60%;
-    --primary-foreground: 225 25% 5%;
+    /* Subtle Blue Primary */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
 
-    /* Security Gray Secondary */
-    --secondary: 215 25% 15%;
-    --secondary-foreground: 210 40% 98%;
+    /* Light Gray Secondary */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 215 25% 12%;
-    --muted-foreground: 217 10% 65%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Cyber Green Accent */
-    --accent: 142 76% 36%;
-    --accent-foreground: 225 25% 5%;
+    /* Gentle Purple Accent */
+    --accent: 262.1 83.3% 57.8%;
+    --accent-foreground: 210 40% 98%;
 
-    /* Danger Red */
-    --destructive: 0 84% 60%;
+    /* Standard Red */
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 215 25% 18%;
-    --input: 215 25% 12%;
-    --ring: 217 91% 60%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Custom Security Colors */
-    --security-success: 142 76% 36%;
-    --security-warning: 45 93% 47%;
-    --security-info: 217 91% 60%;
-    --security-critical: 0 84% 60%;
+    /* Status Colors */
+    --success: 142.1 76.2% 36.3%;
+    --warning: 47.9 95.8% 53.1%;
+    --info: 198.6 88.7% 48.4%;
+    --critical: 0 84.2% 60.2%;
 
-    /* Glassmorphism Effects */
-    --glass-bg: 225 25% 8% / 0.8;
-    --glass-border: 217 91% 60% / 0.2;
-    --glass-shadow: 225 100% 3% / 0.3;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(142 76% 36%) 100%);
-    --gradient-security: linear-gradient(135deg, hsl(225 25% 5%) 0%, hsl(215 25% 12%) 100%);
-    --gradient-glass: linear-gradient(135deg, hsl(225 25% 8% / 0.4) 0%, hsl(215 25% 12% / 0.6) 100%);
+    /* Subtle Effects */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
     /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.2s ease-in-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -88,7 +82,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -97,7 +91,7 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 262.1 83.3% 57.8%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -105,15 +99,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -124,39 +110,49 @@
 
   body {
     @apply bg-background text-foreground;
-    background: var(--gradient-security);
   }
 }
 
 @layer components {
-  /* Glass morphism utilities */
-  .glass {
-    @apply bg-card/80 backdrop-blur-xl border border-white/10;
-    box-shadow: 0 8px 32px hsl(var(--glass-shadow));
+  /* Card utilities */
+  .card-elevated {
+    box-shadow: var(--shadow-md);
+    @apply border border-border bg-card;
   }
 
-  .glass-hover {
-    @apply glass hover:bg-card/90 hover:border-white/20;
-    transition: var(--transition-smooth);
+  .card-hover {
+    @apply card-elevated hover:shadow-lg transition-all duration-200;
   }
 
-  /* Security status indicators */
-  .security-success {
-    @apply bg-green-500/20 text-green-400 border border-green-500/30;
+  /* Status indicators */
+  .status-success {
+    @apply bg-green-50 text-green-700 border border-green-200;
   }
 
-  .security-warning {
-    @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30;
+  .status-warning {
+    @apply bg-orange-50 text-orange-700 border border-orange-200;
   }
 
-  .security-critical {
-    @apply bg-red-500/20 text-red-400 border border-red-500/30;
+  .status-critical {
+    @apply bg-red-50 text-red-700 border border-red-200;
+  }
+
+  .dark .status-success {
+    @apply bg-green-500/10 text-green-400 border-green-500/20;
+  }
+
+  .dark .status-warning {
+    @apply bg-orange-500/10 text-orange-400 border-orange-500/20;
+  }
+
+  .dark .status-critical {
+    @apply bg-red-500/10 text-red-400 border-red-500/20;
   }
 
   /* Emoji encryption display */
   .emoji-sequence {
-    @apply font-mono text-2xl tracking-wider p-4 rounded-lg glass;
-    letter-spacing: 0.5em;
+    @apply font-mono text-xl tracking-wide p-3 rounded-md bg-muted/50 border;
+    letter-spacing: 0.3em;
   }
 
   /* Smooth animations */

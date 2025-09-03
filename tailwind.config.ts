@@ -53,10 +53,10 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				security: {
-					success: 'hsl(var(--security-success))',
-					warning: 'hsl(var(--security-warning))',
-					info: 'hsl(var(--security-info))',
-					critical: 'hsl(var(--security-critical))'
+					success: 'hsl(var(--success))',
+					warning: 'hsl(var(--warning))',
+					info: 'hsl(var(--info))',
+					critical: 'hsl(var(--critical))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

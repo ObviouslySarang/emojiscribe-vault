@@ -2,6 +2,9 @@ import { useState, useMemo } from 'react';
 import { SecureEmoHeader } from '@/components/SecureEmoHeader';
 import { PasswordEntry, PasswordEntryType } from '@/components/PasswordEntry';
 import { AddPasswordModal } from '@/components/AddPasswordModal';
+import { LoginPage } from '@/components/auth/LoginPage';
+import { RegisterPage } from '@/components/auth/RegisterPage';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Filter, Grid, List, Lock } from 'lucide-react';
@@ -57,6 +60,16 @@ const DEMO_PASSWORDS: PasswordEntryType[] = [
 const CATEGORIES = ['All', 'Personal', 'Work', 'Social', 'Finance', 'Shopping', 'Entertainment', 'Other'];
 
 const Index = () => {
+  return (
+    <AuthProvider>
+      <AuthenticatedApp />
+    </AuthProvider>
+  );
+};
+
+function AuthenticatedApp() {
+  const { user, isLoading, signOut } = useAuth();
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
   const [passwords, setPasswords] = useState<PasswordEntryType[]>(DEMO_PASSWORDS);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -64,6 +77,37 @@ const Index = () => {
   const [editingEntry, setEditingEntry] = useState<PasswordEntryType | undefined>();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const { toast } = useToast();
+
+  // Show loading while checking auth
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show auth pages if not authenticated
+  if (!user) {
+    if (authMode === 'register') {
+      return (
+        <RegisterPage
+          onRegisterSuccess={() => setAuthMode('login')}
+          onSwitchToLogin={() => setAuthMode('login')}
+        />
+      );
+    }
+
+    return (
+      <LoginPage
+        onLoginSuccess={() => {}} // Auth context handles this
+        onSwitchToRegister={() => setAuthMode('register')}
+      />
+    );
+  }
 
   // Filter passwords based on search and category
   const filteredPasswords = useMemo(() => {
@@ -143,13 +187,15 @@ const Index = () => {
           onAddPassword={() => setIsAddModalOpen(true)}
           onSearch={setSearchQuery}
           searchQuery={searchQuery}
+          onSignOut={signOut}
+          userEmail={user?.email || ''}
         />
 
         <div className="flex gap-6 p-6">
           {/* Sidebar */}
           <div className="w-64 space-y-4">
             {/* Categories */}
-            <div className="glass-hover p-4 rounded-xl">
+            <div className="card-hover p-4 rounded-xl">
               <div className="flex items-center space-x-2 mb-3">
                 <Filter className="w-4 h-4 text-primary" />
                 <h3 className="font-semibold">Categories</h3>
@@ -161,13 +207,13 @@ const Index = () => {
                     variant={selectedCategory === category ? "default" : "ghost"}
                     className={`w-full justify-between ${
                       selectedCategory === category 
-                        ? 'bg-gradient-to-r from-primary to-accent text-white' 
-                        : 'hover:bg-white/5'
+                        ? 'bg-primary text-primary-foreground' 
+                        : 'hover:bg-accent/50'
                     }`}
                     onClick={() => setSelectedCategory(category)}
                   >
                     <span>{category}</span>
-                    <Badge variant="secondary" className="bg-white/10">
+                    <Badge variant="secondary" className="bg-muted">
                       {getCategoryCount(category)}
                     </Badge>
                   </Button>
@@ -176,7 +222,7 @@ const Index = () => {
             </div>
 
             {/* Security Stats */}
-            <div className="glass-hover p-4 rounded-xl">
+            <div className="card-hover p-4 rounded-xl">
               <div className="flex items-center space-x-2 mb-3">
                 <Lock className="w-4 h-4 text-primary" />
                 <h3 className="font-semibold">Security Overview</h3>
@@ -210,7 +256,7 @@ const Index = () => {
                 <h2 className="text-xl font-semibold">
                   {selectedCategory === 'All' ? 'All Passwords' : `${selectedCategory} Passwords`}
                 </h2>
-                <Badge variant="secondary" className="bg-white/10">
+                <Badge variant="secondary" className="bg-muted">
                   {filteredPasswords.length}
                 </Badge>
               </div>
@@ -220,7 +266,6 @@ const Index = () => {
                   variant={viewMode === 'grid' ? 'default' : 'outline'}
                   size="icon"
                   onClick={() => setViewMode('grid')}
-                  className={viewMode === 'grid' ? 'bg-gradient-to-r from-primary to-accent' : 'glass border-white/20'}
                 >
                   <Grid className="w-4 h-4" />
                 </Button>
@@ -228,7 +273,6 @@ const Index = () => {
                   variant={viewMode === 'list' ? 'default' : 'outline'}
                   size="icon"
                   onClick={() => setViewMode('list')}
-                  className={viewMode === 'list' ? 'bg-gradient-to-r from-primary to-accent' : 'glass border-white/20'}
                 >
                   <List className="w-4 h-4" />
                 </Button>
@@ -237,7 +281,7 @@ const Index = () => {
 
             {/* Password Grid/List */}
             {filteredPasswords.length === 0 ? (
-              <div className="glass-hover rounded-xl p-12 text-center">
+              <div className="card-hover rounded-xl p-12 text-center">
                 <Lock className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">No passwords found</h3>
                 <p className="text-muted-foreground mb-4">
@@ -245,7 +289,6 @@ const Index = () => {
                 </p>
                 <Button 
                   onClick={() => setIsAddModalOpen(true)}
-                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90"
                 >
                   Add Password
                 </Button>

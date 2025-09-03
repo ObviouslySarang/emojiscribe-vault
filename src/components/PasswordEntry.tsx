@@ -73,7 +73,7 @@ export function PasswordEntry({ entry, onEdit, onDelete }: PasswordEntryProps) {
   };
 
   return (
-    <Card className="glass-hover animate-fade-in group">
+    <Card className="card-hover animate-fade-in group">
       <CardContent className="p-6">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
@@ -127,7 +127,7 @@ export function PasswordEntry({ entry, onEdit, onDelete }: PasswordEntryProps) {
         {/* Credentials */}
         <div className="space-y-3">
           {entry.email && (
-            <div className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-white/10">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 border">
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-muted-foreground" />
                 <span className="text-sm">{entry.email}</span>
@@ -142,7 +142,7 @@ export function PasswordEntry({ entry, onEdit, onDelete }: PasswordEntryProps) {
             </div>
           )}
 
-          <div className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-white/10">
+          <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50 border">
             <div className="flex items-center space-x-2">
               <span className="text-sm font-medium">Username:</span>
               <span className="text-sm">{entry.username}</span>
@@ -156,7 +156,7 @@ export function PasswordEntry({ entry, onEdit, onDelete }: PasswordEntryProps) {
             </Button>
           </div>
 
-          <div className="p-3 rounded-lg bg-muted/20 border border-white/10">
+          <div className="p-3 rounded-lg bg-muted/50 border">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">Password:</span>
               <div className="flex items-center space-x-2">

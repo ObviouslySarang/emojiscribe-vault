@@ -92,7 +92,7 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="glass border-white/20 max-w-md animate-scale-in">
+      <DialogContent className="card-elevated border max-w-md animate-scale-in">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-2">
             <Shield className="w-5 h-5 text-primary" />
@@ -108,7 +108,6 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
               placeholder="e.g. Gmail, Facebook, Bank..."
               value={formData.title}
               onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-              className="glass border-white/20"
               required
             />
           </div>
@@ -120,7 +119,6 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
               placeholder="https://example.com"
               value={formData.website}
               onChange={(e) => setFormData(prev => ({ ...prev, website: e.target.value }))}
-              className="glass border-white/20"
             />
           </div>
 
@@ -132,7 +130,6 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
               placeholder="your@email.com"
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="glass border-white/20"
             />
           </div>
 
@@ -143,7 +140,6 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
               placeholder="your_username"
               value={formData.username}
               onChange={(e) => setFormData(prev => ({ ...prev, username: e.target.value }))}
-              className="glass border-white/20"
               required
             />
           </div>
@@ -151,10 +147,10 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
           <div>
             <Label htmlFor="category">Category</Label>
             <Select value={formData.category} onValueChange={(value) => setFormData(prev => ({ ...prev, category: value }))}>
-              <SelectTrigger className="glass border-white/20">
+              <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="glass border-white/20">
+              <SelectContent>
                 {CATEGORIES.map(category => (
                   <SelectItem key={category} value={category}>
                     {category}
@@ -202,7 +198,7 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
                 placeholder="Enter a strong password"
                 value={formData.password}
                 onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                className="glass border-white/20 pr-10"
+                className="pr-10"
                 required
               />
               <Button
@@ -243,13 +239,13 @@ export function AddPasswordModal({ isOpen, onClose, onSave, editEntry }: AddPass
               type="button"
               variant="outline"
               onClick={onClose}
-              className="flex-1 glass border-white/20"
+              className="flex-1"
             >
               Cancel
             </Button>
             <Button
               type="submit"
-              className="flex-1 bg-gradient-to-r from-primary to-accent hover:opacity-90"
+              className="flex-1"
               disabled={!formData.title || !formData.username || !formData.password}
             >
               {editEntry ? 'Update' : 'Save'}

@@ -1,23 +1,35 @@
-import { Shield, Settings, Plus, Search } from 'lucide-react';
+import { Shield, Settings, Plus, Search, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface SecureEmoHeaderProps {
   onAddPassword: () => void;
   onSearch: (query: string) => void;
   searchQuery: string;
+  onSignOut?: () => Promise<void>;
+  userEmail?: string;
 }
 
-export function SecureEmoHeader({ onAddPassword, onSearch, searchQuery }: SecureEmoHeaderProps) {
+export function SecureEmoHeader({ onAddPassword, onSearch, searchQuery, onSignOut, userEmail }: SecureEmoHeaderProps) {
+  const userInitials = userEmail ? userEmail.charAt(0).toUpperCase() + userEmail.split('@')[0].charAt(1)?.toUpperCase() : 'U';
+
   return (
-    <header className="glass-hover border-b border-white/10 p-6">
+    <header className="card-elevated border-b p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent">
-            <Shield className="w-7 h-7 text-white" />
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 border border-primary/20">
+            <Shield className="w-7 h-7 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold text-primary">
               Secure Emo
             </h1>
             <p className="text-muted-foreground text-sm">
@@ -27,11 +39,38 @@ export function SecureEmoHeader({ onAddPassword, onSearch, searchQuery }: Secure
         </div>
         
         <div className="flex items-center space-x-3">
-          <Button variant="outline" size="icon" className="glass-hover">
-            <Settings className="w-4 h-4" />
-          </Button>
+          {userEmail && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="flex items-center space-x-2 p-2">
+                  <Avatar className="w-8 h-8">
+                    <AvatarFallback className="text-sm">{userInitials}</AvatarFallback>
+                  </Avatar>
+                  <span className="text-sm hidden md:block">{userEmail}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuItem className="flex items-center space-x-2">
+                  <User className="w-4 h-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="flex items-center space-x-2">
+                  <Settings className="w-4 h-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem 
+                  className="flex items-center space-x-2 text-destructive focus:text-destructive"
+                  onClick={onSignOut}
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Sign out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
           
-          <Button onClick={onAddPassword} className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
+          <Button onClick={onAddPassword} className="hover:opacity-90 transition-opacity">
             <Plus className="w-4 h-4 mr-2" />
             Add Password
           </Button>
@@ -44,7 +83,7 @@ export function SecureEmoHeader({ onAddPassword, onSearch, searchQuery }: Secure
           placeholder="Search passwords, websites, or categories..."
           value={searchQuery}
           onChange={(e) => onSearch(e.target.value)}
-          className="pl-10 glass border-white/20 focus:border-primary/50"
+          className="pl-10 border-border focus:border-primary/50"
         />
       </div>
     </header>
