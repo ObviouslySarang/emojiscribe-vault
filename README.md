@@ -1,73 +1,232 @@
-# Welcome to your Lovable project
+📒 Emojiscribe Vault — Secure Emo
 
-## Project info
+🔐 Enterprise-grade Password Manager with Emoji-Based Encryption
+Built with the MERN stack and TypeScript, featuring end-to-end encryption, emoji mapping, and robust security.
 
-**URL**: https://lovable.dev/projects/aca890b2-8635-4bfc-84ae-9190f7dd7dbc
+<!-- Optional banner -->
 
-## How can I edit this code?
+🚀 Project Overview
 
-There are several ways of editing your application.
+Emojiscribe Vault (codename: Secure Emo) is a full-featured, enterprise-ready password manager built with modern web technologies and hardened security practices. It leverages a custom emoji-based encryption language, AES-256-GCM, and PBKDF2/Argon2 for zero-knowledge, client-side encryption.
 
-**Use Lovable**
+Designed with modularity, testability, and performance in mind, this project follows a phased approach to development with CI/CD, unit/integration tests, and a beautiful UI using ShadCN + TailwindCSS.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/aca890b2-8635-4bfc-84ae-9190f7dd7dbc) and start prompting.
+⚙️ Tech Stack
+🧠 Frontend
 
-Changes made via Lovable will be committed automatically to this repo.
+React
+ + TypeScript (strict mode)
 
-**Use your preferred IDE**
+Vite
+, TailwindCSS
+, ShadCN UI
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+React Query
+ + Axios
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+🛠 Backend
 
-Follow these steps:
+Node.js + Express + TypeScript (strict mode)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Zod
+ for schema validation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Mongoose
+ for MongoDB models
 
-# Step 3: Install the necessary dependencies.
-npm i
+🔐 Security & Encryption
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+JWT + Refresh Token auth with secure, HttpOnly cookies
 
-**Edit a file directly in GitHub**
+Bcrypt for hashing passwords
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+AES-256-GCM for encryption
 
-**Use GitHub Codespaces**
+PBKDF2 or Argon2 for key derivation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Emoji mapping for password visualization
 
-## What technologies are used for this project?
+Helmet, Rate Limiting, CSRF, Brute Force protection
 
-This project is built with:
+✨ Features
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+🔐 End-to-end encrypted password storage
 
-## How can I deploy this project?
+🔐 Custom emoji mapping (visual cipher)
 
-Simply open [Lovable](https://lovable.dev/projects/aca890b2-8635-4bfc-84ae-9190f7dd7dbc) and click on Share -> Publish.
+🧠 Client-side encryption before transmission
 
-## Can I connect a custom domain to my Lovable project?
+🌐 REST API with strict schema validation
 
-Yes, you can!
+🔒 No plaintext sensitive data ever stored
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+💅 Polished UI with ShadCN + TailwindCSS
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+🔍 Search, filter, and categorize vault entries
+
+🌗 Light/Dark mode toggle
+
+📋 Copy to clipboard with auto-clear
+
+🧪 Full unit and integration test coverage
+
+🔁 CI/CD via GitHub Actions (Netlify + Railway)
+
+🧱 Folder Structure
+emojiscribe-vault/
+├── frontend/                # React (Vite) App
+│   ├── src/components/
+│   ├── src/pages/
+│   ├── src/hooks/
+│   ├── src/utils/
+│   └── ...
+├── backend/                 # Node + Express API
+│   ├── src/routes/
+│   ├── src/controllers/
+│   ├── src/middleware/
+│   ├── src/utils/
+│   └── ...
+├── shared/                 # Shared logic (encryption, types)
+├── .github/workflows/      # CI/CD
+└── ...
+
+🔐 Security Model
+
+Zero Knowledge: All encryption happens client-side before data leaves the browser.
+
+Encryption Stack:
+
+AES-256-GCM for secure encryption
+
+PBKDF2 or Argon2 for password-based key derivation
+
+Unique IV per encryption
+
+Emoji mapping is purely visual, layered on top of AES
+
+Auth Security:
+
+Short-lived JWT access tokens
+
+Secure, HttpOnly refresh tokens
+
+Bcrypt for password hashing
+
+Transport Layer: HTTPS enforced (via Netlify + Railway)
+
+Server Hardening: Helmet, rate limiter, CSRF protection, brute force lockout.
+
+🧪 Testing
+✅ Backend
+
+Unit Tests: encryption, validation, utility functions (Jest)
+
+Integration Tests: all endpoints using Supertest
+
+✅ Frontend
+
+Component Tests: Vitest + React Testing Library
+
+Mocking: MSW (Mock Service Worker) for API mocks
+
+🚀 Setup Instructions
+🔧 Prerequisites
+
+Node.js >= 18
+
+pnpm >= 8
+
+MongoDB Atlas (free tier)
+
+Netlify + Railway/Render account (for deployment)
+
+🛠️ Installation
+git clone https://github.com/ObviouslySarang/emojiscribe-vault.git
+cd emojiscribe-vault
+pnpm install
+
+🔑 Environment Variables
+
+Create .env files in /frontend and /backend with the following:
+
+Backend .env
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=supersecurejwt
+JWT_REFRESH_SECRET=supersecurejwtrefresh
+CLIENT_URL=http://localhost:3000
+
+
+Frontend .env
+
+VITE_API_BASE_URL=http://localhost:5000/api
+
+🧪 Run Locally
+# Start backend
+cd backend
+pnpm dev
+
+# Start frontend
+cd frontend
+pnpm dev
+
+🔁 CI/CD (GitHub Actions)
+
+Auto lint/test/build on every push
+
+Auto-deploy:
+
+Frontend → Netlify
+
+Backend → Railway/Render
+
+Secrets stored securely via GitHub Actions
+
+🌍 Deployment
+Frontend (Netlify)
+
+Connect repo, set build command: pnpm run build
+
+Set output directory: dist/
+
+Add environment variables in Netlify dashboard
+
+Backend (Railway/Render)
+
+Deploy backend directly from GitHub
+
+Add .env values via dashboard
+
+Enable HTTPS and environment protection
+
+Database (MongoDB Atlas)
+
+Create cluster
+
+Add user, IP whitelist
+
+Get connection string for .env
+
+🤝 Contributing
+
+We welcome contributions! Here’s how to get started:
+
+Fork the repo
+
+Create a feature branch (git checkout -b feat/your-feature)
+
+Commit your changes
+
+Run tests & linting
+
+Open a pull request 🚀
+
+📄 License
+
+This project is licensed under the MIT License.
+
+📬 Contact
+
+Feel free to reach out via GitHub Issues
+ for bugs or suggestions.
