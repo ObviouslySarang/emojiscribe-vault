@@ -1,168 +1,144 @@
-📒 Emojiscribe Vault — Secure Emo
 
-🔐 Enterprise-grade Password Manager with Emoji-Based Encryption
-Built with the MERN stack and TypeScript, featuring end-to-end encryption, emoji mapping, and robust security.
 
-<!-- Optional banner -->
+```
+# 📒 Emojiscribe Vault — Secure Emo
 
-🚀 Project Overview
+> 🔐 Enterprise-grade Password Manager with Emoji-Based Encryption  
+> Built using the MERN stack and TypeScript, with E2E encryption and enterprise security standards.
 
-Emojiscribe Vault (codename: Secure Emo) is a full-featured, enterprise-ready password manager built with modern web technologies and hardened security practices. It leverages a custom emoji-based encryption language, AES-256-GCM, and PBKDF2/Argon2 for zero-knowledge, client-side encryption.
+---
 
-Designed with modularity, testability, and performance in mind, this project follows a phased approach to development with CI/CD, unit/integration tests, and a beautiful UI using ShadCN + TailwindCSS.
+# 🚀 Project Overview
 
-⚙️ Tech Stack
-🧠 Frontend
+**Secure Emo** is a zero-knowledge password manager featuring client-side encryption, custom emoji-based visualization, and a secure backend using modern best practices. The system is modular, tested, and production-ready with CI/CD pipelines and a beautiful ShadCN UI.
 
-React
- + TypeScript (strict mode)
+---
 
-Vite
-, TailwindCSS
-, ShadCN UI
+# ⚙️ Tech Stack
 
-React Query
- + Axios
+### Frontend
+- React + TypeScript + Vite
+- TailwindCSS + ShadCN UI
+- Axios + React Query
 
-🛠 Backend
+### Backend
+- Node.js + Express + TypeScript (strict)
+- Zod (validation) + Mongoose (MongoDB)
 
-Node.js + Express + TypeScript (strict mode)
+### Security
+- JWT Auth (short-lived) + Refresh Tokens (HttpOnly, Secure)
+- Bcrypt for password hashing
+- AES-256-GCM encryption
+- PBKDF2 or Argon2 for key derivation
+- Emoji-based password visualization
+- Helmet, CSRF, rate limiting, brute force protection
 
-Zod
- for schema validation
+### Testing
+- Jest + ts-jest (backend unit tests)
+- Supertest (integration tests)
+- Vitest + React Testing Library (frontend tests)
+- MSW (mock API for UI testing)
 
-Mongoose
- for MongoDB models
+---
 
-🔐 Security & Encryption
+## ✨ Features
 
-JWT + Refresh Token auth with secure, HttpOnly cookies
+- 🔐 End-to-end encryption with emoji cipher visualization
+- 🧠 Client-side password encryption
+- 📂 Vault management: add, update, delete, list
+- 🔍 Search, filter, sort vault entries
+- 🌙 Dark/light theme toggle
+- 📋 Copy to clipboard with auto-clear
+- ⚙️ Fully tested backend and frontend
+- 🔁 CI/CD with GitHub Actions
+- 🌐 Deployed frontend (Netlify) & backend (Railway/Render)
 
-Bcrypt for hashing passwords
+---
 
-AES-256-GCM for encryption
+## 📁 Folder Structure
 
-PBKDF2 or Argon2 for key derivation
+```
 
-Emoji mapping for password visualization
-
-Helmet, Rate Limiting, CSRF, Brute Force protection
-
-✨ Features
-
-🔐 End-to-end encrypted password storage
-
-🔐 Custom emoji mapping (visual cipher)
-
-🧠 Client-side encryption before transmission
-
-🌐 REST API with strict schema validation
-
-🔒 No plaintext sensitive data ever stored
-
-💅 Polished UI with ShadCN + TailwindCSS
-
-🔍 Search, filter, and categorize vault entries
-
-🌗 Light/Dark mode toggle
-
-📋 Copy to clipboard with auto-clear
-
-🧪 Full unit and integration test coverage
-
-🔁 CI/CD via GitHub Actions (Netlify + Railway)
-
-🧱 Folder Structure
 emojiscribe-vault/
-├── frontend/                # React (Vite) App
+├── frontend/                # React app (Vite)
 │   ├── src/components/
 │   ├── src/pages/
 │   ├── src/hooks/
-│   ├── src/utils/
 │   └── ...
 ├── backend/                 # Node + Express API
 │   ├── src/routes/
 │   ├── src/controllers/
 │   ├── src/middleware/
-│   ├── src/utils/
 │   └── ...
-├── shared/                 # Shared logic (encryption, types)
-├── .github/workflows/      # CI/CD
-└── ...
+├── shared/                 # Shared utilities (encryption, types)
+├── .github/workflows/      # CI/CD pipelines
 
-🔐 Security Model
+````
 
-Zero Knowledge: All encryption happens client-side before data leaves the browser.
+---
 
-Encryption Stack:
+## 🔐 Security Model
 
-AES-256-GCM for secure encryption
+- **End-to-End Encryption:** Passwords encrypted client-side before transmission.
+- **Encryption:** AES-256-GCM with PBKDF2/Argon2-based key derivation.
+- **Emoji Layer:** Custom mapping on top of real encryption for user visualization.
+- **Authentication:** JWT + Refresh Tokens via HttpOnly, Secure cookies.
+- **Best Practices:** Helmet, rate limiting, CSRF protection, no plain-text secrets.
 
-PBKDF2 or Argon2 for password-based key derivation
+---
 
-Unique IV per encryption
+## 🧪 Testing Strategy
 
-Emoji mapping is purely visual, layered on top of AES
+### Backend
+- Encryption utilities tested with Jest
+- API endpoints tested with Supertest
 
-Auth Security:
+### Frontend
+- Component/unit tests with Vitest
+- API mocking using MSW
 
-Short-lived JWT access tokens
+---
 
-Secure, HttpOnly refresh tokens
+## 🚀 Setup Instructions
 
-Bcrypt for password hashing
+### Prerequisites
 
-Transport Layer: HTTPS enforced (via Netlify + Railway)
+- Node.js v18+
+- pnpm v8+
+- MongoDB Atlas
+- Netlify + Railway/Render accounts
 
-Server Hardening: Helmet, rate limiter, CSRF protection, brute force lockout.
+### Clone & Install
 
-🧪 Testing
-✅ Backend
-
-Unit Tests: encryption, validation, utility functions (Jest)
-
-Integration Tests: all endpoints using Supertest
-
-✅ Frontend
-
-Component Tests: Vitest + React Testing Library
-
-Mocking: MSW (Mock Service Worker) for API mocks
-
-🚀 Setup Instructions
-🔧 Prerequisites
-
-Node.js >= 18
-
-pnpm >= 8
-
-MongoDB Atlas (free tier)
-
-Netlify + Railway/Render account (for deployment)
-
-🛠️ Installation
+```bash
 git clone https://github.com/ObviouslySarang/emojiscribe-vault.git
 cd emojiscribe-vault
 pnpm install
+````
 
-🔑 Environment Variables
+### Environment Variables
 
-Create .env files in /frontend and /backend with the following:
+Create `.env` files in `frontend` and `backend`.
 
-Backend .env
+**backend/.env**
 
+```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=supersecurejwt
 JWT_REFRESH_SECRET=supersecurejwtrefresh
 CLIENT_URL=http://localhost:3000
+```
 
+**frontend/.env**
 
-Frontend .env
-
+```env
 VITE_API_BASE_URL=http://localhost:5000/api
+```
 
-🧪 Run Locally
+### Run Dev Servers
+
+```bash
 # Start backend
 cd backend
 pnpm dev
@@ -170,63 +146,66 @@ pnpm dev
 # Start frontend
 cd frontend
 pnpm dev
+```
 
-🔁 CI/CD (GitHub Actions)
+---
 
-Auto lint/test/build on every push
+## 🔁 CI/CD Configuration
 
-Auto-deploy:
+* GitHub Actions for linting, testing, and building on every push
+* Auto-deploy:
 
-Frontend → Netlify
+  * Netlify (frontend)
+  * Railway/Render (backend)
+* Store secrets in GitHub → Settings → Secrets
 
-Backend → Railway/Render
+---
 
-Secrets stored securely via GitHub Actions
+## 🌍 Deployment
 
-🌍 Deployment
-Frontend (Netlify)
+### Frontend → Netlify
 
-Connect repo, set build command: pnpm run build
+* Build Command: `pnpm build`
+* Output Directory: `dist/`
+* Set env vars in dashboard
 
-Set output directory: dist/
+### Backend → Railway/Render
 
-Add environment variables in Netlify dashboard
+* Deploy from GitHub repo
+* Set environment variables
+* Enforce HTTPS and secure cookies
 
-Backend (Railway/Render)
+### Database → MongoDB Atlas
 
-Deploy backend directly from GitHub
+* Create cluster
+* Add IP + user
+* Paste connection string into `.env`
 
-Add .env values via dashboard
+---
 
-Enable HTTPS and environment protection
+## 🤝 Contributing
 
-Database (MongoDB Atlas)
+1. Fork the repo
+2. Create a new branch: `git checkout -b feat/feature-name`
+3. Commit your changes
+4. Push and open a PR 🚀
 
-Create cluster
+---
 
-Add user, IP whitelist
+## 📄 License
 
-Get connection string for .env
+Licensed under the **MIT License**.
 
-🤝 Contributing
+---
 
-We welcome contributions! Here’s how to get started:
+## 📬 Contact
 
-Fork the repo
+Questions or suggestions?
+Open an issue or PR at [https://github.com/ObviouslySarang/emojiscribe-vault](https://github.com/ObviouslySarang/emojiscribe-vault).
 
-Create a feature branch (git checkout -b feat/your-feature)
+```
 
-Commit your changes
+---
 
-Run tests & linting
-
-Open a pull request 🚀
-
-📄 License
-
-This project is licensed under the MIT License.
-
-📬 Contact
-
-Feel free to reach out via GitHub Issues
- for bugs or suggestions.
+Would you like me to generate this into a file (`README.md`) or help you format it directly in your repository using GitHub UI?
+```
